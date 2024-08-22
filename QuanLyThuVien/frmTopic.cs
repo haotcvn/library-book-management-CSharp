@@ -1,0 +1,286 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using QuanLyThuVien.Class;
+
+namespace QuanLyThuVien
+{
+    public partial class frmTopic : Form
+    {
+        Topic topic;
+        private bool addNew;
+
+        public frmTopic()
+        {
+            InitializeComponent();
+        }
+
+        private void frmTopic_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                topic = new Topic();
+                setNull();
+                setValue(true);
+                setButton(true);
+                showTopic();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        #region Set các giá trị chung
+        void setValue(bool val)
+        {
+            txtName.Enabled = !val;
+        }
+
+        void setNull()
+        {
+            txtName.Text = "";
+        }
+
+        void setButton(bool btn)
+        {
+            btnCreate.Enabled = btn;
+            btnEdit.Enabled = btn;
+            btnDelete.Enabled = btn;
+            btnSave.Enabled = !btn;
+            btnCancel.Enabled = !btn;
+            btnExit.Enabled = btn;
+            btnCancelS.Enabled = !btn;
+        }
+        #endregion
+
+        #region Hiển thị dữ liệu
+
+        // Hiển thị danh sách các chủ đề
+        public void showTopic()
+        {
+            try
+            {
+                dgvTopic.DataSource = topic.listTopic();
+
+                //Set tiêu đề cho cột
+                dgvTopic.Columns["MACD"].HeaderText = "Mã chủ đề";
+                dgvTopic.Columns["TENCD"].HeaderText = "Tên chủ đề";
+                dgvTopic.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dgvTopic_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                txtName.Text = dgvTopic.CurrentRow.Cells[1].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Số thứ tự
+        private void dgvTopic_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            try
+            {
+                using (SolidBrush b = new SolidBrush(Color.Blue))
+                {
+                    e.Graphics.DrawString((e.RowIndex + 1).ToString(), e.InheritedRowStyle.Font, b, e.RowBounds.Location.X + 10, e.RowBounds.Location.Y + 4);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        #endregion
+
+        #region Thêm, Xóa, Sửa
+        // Kiểm tra rỗng
+        bool checkNull()
+        {
+            if (string.IsNullOrEmpty(txtName.Text))
+            {
+                MessageBox.Show("Bạn chưa nhập tên chủ đề", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
+        }
+
+        // Thêm mới chủ đề
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+            addNew = true;
+            setValue(false);
+            setNull();
+            setButton(false);
+            txtName.Focus();
+        }
+
+        // Chỉnh sửa chủ đề
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            addNew = false;
+            setValue(false);
+            setButton(false);
+        }
+
+        // Xóa chủ đề
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show("Bạn có chắc xóa không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    int id = Convert.ToInt32(dgvTopic.CurrentRow.Cells[0].Value.ToString());
+                    topic.Delete(id);
+
+                    MessageBox.Show("Bạn đã xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    setNull();
+                    showTopic();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Lưu chủ đề
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            // Thực hiên thêm mới
+            if (addNew)
+            {
+                try
+                {
+                    if (this.checkNull())
+                    {
+                        string name = txtName.Text;
+
+                        topic.Create(name);
+
+                        MessageBox.Show("Bạn đã thêm mới thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        showTopic();
+                        setNull();
+                        setValue(true);
+                        setButton(true);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            // Thực hiên cập nhập
+            else
+            {
+                try
+                {
+                    if (this.checkNull())
+                    {
+                        int id = Convert.ToInt32(dgvTopic.CurrentRow.Cells[0].Value.ToString());
+                        string name = txtName.Text;
+
+                        topic.Edit(id, name);
+
+                        MessageBox.Show("Bạn đã chỉnh sửa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        showTopic();
+                        setNull();
+                        setValue(true);
+                        setButton(true);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        // Hủy thao tác
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            setNull();
+            setValue(true);
+            setButton(true);
+        }
+
+        // Làm mới dữ liệu
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            frmTopic_Load(sender, e);
+        }
+
+        // Thoát
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Bạn muốn thoát", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                this.Close();
+        }
+
+        #endregion
+
+        #region Tìm kiếm
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            btnCancelS.Enabled = true;
+            try
+            {
+                if (rdoID.Checked)
+                {
+                    int id = Convert.ToInt32(txtSearch.Text);
+                    dgvTopic.DataSource = topic.SearchByID(id);
+                }
+                else if (rdoName.Checked)
+                {
+                    dgvTopic.DataSource = topic.SearchByName(txtSearch.Text);
+                }
+                else
+                {
+                    showTopic();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnCancelS_Click(object sender, EventArgs e)
+        {
+            btnCancelS.Enabled = false;
+            rdoID.Checked = false;
+            rdoName.Checked = false;
+            txtSearch.Text = "";
+            showTopic();
+        }
+        #endregion
+
+        #region Xuất file
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog save = new SaveFileDialog();
+            save.Title = "Export Excel";
+            save.Filter = "Excel (*.xlsx)|*xlsx|Excel 2003 (*.xls)|*xls";
+            if (save.ShowDialog() == DialogResult.OK)
+                new ExportExcel().ToExcel(dgvTopic, save.FileName, "DANH SÁCH CHỦ ĐỀ");
+        }
+        #endregion
+    }
+}

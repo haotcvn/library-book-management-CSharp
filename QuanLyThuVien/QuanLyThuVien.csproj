@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C0334FCF-DD3D-4231-A868-1EC0724DC9C2}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QuanLyThuVien</RootNamespace>
+    <AssemblyName>QuanLyThuVien</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class\Account.cs" />
+    <Compile Include="Class\Author.cs" />
+    <Compile Include="Class\Books.cs" />
+    <Compile Include="Class\ConnectionDB.cs" />
+    <Compile Include="Class\ExportExcel.cs" />
+    <Compile Include="Class\Note.cs" />
+    <Compile Include="Class\NoteDetails.cs" />
+    <Compile Include="Class\Publisher.cs" />
+    <Compile Include="Class\Reader.cs" />
+    <Compile Include="Class\Topic.cs" />
+    <Compile Include="DataClasses.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataClasses.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="frmAuthor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAuthor.Designer.cs">
+      <DependentUpon>frmAuthor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBookReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBookReport.Designer.cs">
+      <DependentUpon>frmBookReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBooks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBooks.Designer.cs">
+      <DependentUpon>frmBooks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCalendar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCalendar.Designer.cs">
+      <DependentUpon>frmCalendar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmChangePassword.Designer.cs">
+      <DependentUpon>frmChangePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNote.Designer.cs">
+      <DependentUpon>frmNote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPublisher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPublisher.Designer.cs">
+      <DependentUpon>frmPublisher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmQLThuVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQLThuVien.Designer.cs">
+      <DependentUpon>frmQLThuVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReader.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReader.Designer.cs">
+      <DependentUpon>frmReader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReaderReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReaderReport.Designer.cs">
+      <DependentUpon>frmReaderReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTopic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTopic.Designer.cs">
+      <DependentUpon>frmTopic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLyThuVienDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyThuVienDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLyThuVienDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyThuVienDataSet1.xsd</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="rp_Books.rdlc" />
+    <None Include="DataClasses.dbml.layout">
+      <DependentUpon>DataClasses.dbml</DependentUpon>
+    </None>
+    <EmbeddedResource Include="frmAuthor.resx">
+      <DependentUpon>frmAuthor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBookReport.resx">
+      <DependentUpon>frmBookReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBooks.resx">
+      <DependentUpon>frmBooks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCalendar.resx">
+      <DependentUpon>frmCalendar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmChangePassword.resx">
+      <DependentUpon>frmChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNote.resx">
+      <DependentUpon>frmNote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPublisher.resx">
+      <DependentUpon>frmPublisher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQLThuVien.en-US.resx">
+      <DependentUpon>frmQLThuVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQLThuVien.resx">
+      <DependentUpon>frmQLThuVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQLThuVien.vi-VN.resx">
+      <DependentUpon>frmQLThuVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQLThuVien.vi.resx">
+      <DependentUpon>frmQLThuVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReader.resx">
+      <DependentUpon>frmReader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReaderReport.resx">
+      <DependentUpon>frmReaderReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTopic.resx">
+      <DependentUpon>frmTopic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rpBooks.rdlc" />
+    <None Include="DataClasses.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>DataClasses.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="QuanLyThuVienDataSet.xsc">
+      <DependentUpon>QuanLyThuVienDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="QuanLyThuVienDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QuanLyThuVienDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QuanLyThuVienDataSet.xss">
+      <DependentUpon>QuanLyThuVienDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="QuanLyThuVienDataSet1.xsc">
+      <DependentUpon>QuanLyThuVienDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="QuanLyThuVienDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QuanLyThuVienDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QuanLyThuVienDataSet1.xss">
+      <DependentUpon>QuanLyThuVienDataSet1.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Refresh-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Create-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Pencil-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Cancel-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Search.16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Save-con.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Delete-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icons\add-1-icon.png" />
+    <Content Include="Icons\Aha-Soft-Large-Seo-SEO.ico" />
+    <Content Include="Icons\Aha-Soft-People-Engineer.ico" />
+    <Content Include="Icons\Aha-Soft-People-Users.ico" />
+    <Content Include="Icons\Aha-Soft-Software-User-group.ico" />
+    <Content Include="Icons\Aha-Soft-Standard-City-City.ico" />
+    <Content Include="Icons\exit.png" />
+    <Content Include="Icons\Google-Noto-Emoji-Objects-62863-books.ico" />
+    <Content Include="Icons\Icons-Land-Vista-People-Occupations-Writer-Male-Light.ico" />
+    <Content Include="Icons\math-add-icon.png" />
+    <Content Include="Icons\Pictogrammers-Material-Location-exit.16.png" />
+    <Content Include="Icons\responsive.png" />
+    <Content Include="Icons\Sonya-Swarm-Book.ico" />
+    <Content Include="Icons\statistics.png" />
+    <Content Include="Icons\Tatice-Cristal-Intense-Notepad-Bloc-notes-2.ico" />
+    <Content Include="Images\back-books.jpg" />
+    <Content Include="Images\books_shelf_graffiti_125860_1600x900.jpg" />
+    <Content Include="Images\zoom-backgrounds,-tiktok-backgrounds-design-template-ee752db2ee9379b06a54fcaf62102fef_screen.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

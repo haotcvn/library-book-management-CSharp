@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QuanLyThuVien" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=QuanLyThuVien;Integrated Security=True" SettingsObjectName="QuanLyThuVien.Properties.Settings" SettingsPropertyName="QuanLyThuVienConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.SACH" Member="SACHes">
+    <Type Name="SACH">
+      <Column Name="MASACH" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TENSACH" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="MACD" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MATG" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MANXB" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NAMXB" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SOTRANG" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SOLUONG" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>
